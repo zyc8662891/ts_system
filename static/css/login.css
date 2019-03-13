@@ -1,0 +1,12 @@
+.jumbotron {
+    margin-top: 20vh;
+}
+.form-horizontal {
+    padding: 20px;
+}
+.panel-heading {
+    background-color: darkslategray!important;
+    text-align: center;
+    font-size: 30px;
+    color: white!important;
+}

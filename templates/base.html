@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/bs-3.3.7/css/bootstrap.css">
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+
+</head>
+<body>
+<div class="container-fluid">
+    {% include 'header.html' %}
+
+    <div class="container col-md-3">
+        {% block list %}
+
+        {% endblock %}
+    </div>
+    <div class="container col-md-9">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="text-center">{{ title }}</h4>
+            </div>
+            <div class="panel-body">
+                {% block table %}
+
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="/static/bs-3.3.7/js/jquery-3.3.1.js"></script>
+<script src="/static/bs-3.3.7/js/bootstrap.js"></script>
+{% block script %}
+
+{% endblock %}
+</html>

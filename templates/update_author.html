@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/bs-3.3.7/css/bootstrap.css">
+</head>
+<body>
+{% include 'header.html' %}
+
+<div class="container col-md-offset-3 col-md-6">
+    <div class="panel-primary">
+        <div class="panel-heading">
+            <h3 class="text-hide">{{ title }}</h3>
+        </div>
+        <div class="panel-body">
+            {#            <form action="{% url 'update_book' %}" method="post" class="form-horizontal" novalidate>#}
+            <form action="" method="post" class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="control-label font-3 col-md-2 text-right">姓名</label>
+                    <div class="col-md-9">
+                        <input type="text" id="name" class="form-control" name="name" required value="{{author.name}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="age" class="control-label font-3 col-md-2 text-right">年龄</label>
+                    <div class="col-md-9">
+                        <input max="99" min="0" step="1" type="number" id="age" class="form-control"
+                               name="age" required value="{{ author.author_detail.age }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="telephone" class="control-label font-3 col-md-2 text-right">电话</label>
+                    <div class="col-md-9">
+                        <input type="number" id="telephone" class="form-control" name="telephone" required
+                               value="{{ author.author_detail.telephone}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="info" class="control-label font-3 col-md-2 text-right">简介</label>
+                    <div class="col-md-9">
+                        <input type="text" id="info" class="form-control" name="info" required
+                               value="{{ author.author_detail.info}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="book" class="control-label font-3 col-md-2 text-right">书籍</label>
+                    <div class="col-md-9">
+                        <select name="book_ids" id="book" class="form-control" required multiple>
+                            {% for book in book_list %}
+                                {% if book in author.book_set.all %}
+                                    <option selected value="{{ book.id }}">{{ book.name }}</option>
+                                {% else %}
+                                    <option value="{{ book.id }}">{{ book.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group hidden">
+                    <input type="hidden" value="{{ author_id }}" name="author_id">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="更新" class="btn btn-primary col-md-4 col-md-offset-7">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

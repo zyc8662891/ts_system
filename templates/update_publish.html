@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/bs-3.3.7/css/bootstrap.css">
+</head>
+<body>
+{% include 'header.html' %}
+
+<div class="container col-md-offset-3 col-md-6">
+    <div class="panel-primary">
+        <div class="panel-heading">
+            <h3 class="text-hide">{{ title }}</h3>
+        </div>
+        <div class="panel-body">
+            {#            <form action="{% url 'update_book' %}" method="post" class="form-horizontal" novalidate>#}
+            <form action="" method="post" class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="control-label font-3 col-md-2 text-right">出版社名</label>
+                    <div class="col-md-9">
+                        <input type="text" id="name" class="form-control" name="name" required value="{{publish.name}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="control-label font-3 col-md-2 text-right">地址</label>
+                    <div class="col-md-9">
+                        <input  type="text" id="address" class="form-control"
+                               name="address" required value="{{ publish.address }}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="book" class="control-label font-3 col-md-2 text-right">书籍</label>
+                    <div class="col-md-9">
+                        <select name="book_ids" id="book" class="form-control" required multiple>
+                            {% for book in book_list %}
+                                {% if book in publish.book_set.all %}
+                                    <option selected value="{{ book.id }}">{{ book.name }}</option>
+                                {% else %}
+                                    <option value="{{ book.id }}">{{ book.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group hidden">
+                    <input type="hidden" value="{{ publish_id }}" name="publish_id">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="更新" class="btn btn-primary col-md-4 col-md-offset-7">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
